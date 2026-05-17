@@ -1,0 +1,744 @@
+node:internal/modules/cjs/loader:1401
+  const err = new Error(message);
+              ^
+
+Error: Cannot find module 'dotenv/config'
+Require stack:
+- D:\lms\lms-backend\compiler-service\index.ts
+    at node:internal/modules/cjs/loader:1401:15
+    at nextResolveSimple (D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs:4:1004)
+    at D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs:3:2630
+    at D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs:3:1542
+    at resolveTsPaths (D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs:4:760)
+    at D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs:4:1102
+    at m._resolveFilename (file:///D:/lms/lms-backend/node_modules/tsx/dist/register-B7jrtLTO.mjs:1:789)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    at Function._load (node:internal/modules/cjs/loader:1211:37) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [ 'D:\\lms\\lms-backend\\compiler-service\\index.ts' ]
+}
+
+Node.js v22.15.0
+node:internal/modules/cjs/loader:1404
+  throw err;
+  ^
+
+Error: Cannot find module 'esbuild'
+Require stack:
+- D:\lms\lms-backend\node_modules\tsx\dist\index-gckBtVBf.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\cjs\index.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\get-pipe-path-BoR10qr8.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\preflight.cjs
+- internal/preload
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    at Function._load (node:internal/modules/cjs/loader:1211:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.require (node:internal/modules/cjs/loader:1487:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (D:\lms\lms-backend\node_modules\tsx\dist\index-gckBtVBf.cjs:1:125)
+    at Module._compile (node:internal/modules/cjs/loader:1730:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\index-gckBtVBf.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\register-D46fvsV_.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\cjs\\index.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\get-pipe-path-BoR10qr8.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\preflight.cjs',
+    'internal/preload'
+  ]
+}
+
+Node.js v22.15.0
+node:internal/modules/cjs/loader:1404
+  throw err;
+  ^
+
+Error: Cannot find module 'get-tsconfig'
+Require stack:
+- D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\cjs\index.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\get-pipe-path-BoR10qr8.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\preflight.cjs
+- internal/preload
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    at Function._load (node:internal/modules/cjs/loader:1211:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.require (node:internal/modules/cjs/loader:1487:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs:1:211)
+    at Module._compile (node:internal/modules/cjs/loader:1730:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\register-D46fvsV_.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\cjs\\index.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\get-pipe-path-BoR10qr8.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\preflight.cjs',
+    'internal/preload'
+  ]
+}
+
+Node.js v22.15.0
+node:internal/modules/cjs/loader:1404
+  throw err;
+  ^
+
+Error: Cannot find module 'get-tsconfig'
+Require stack:
+- D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\cjs\index.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\get-pipe-path-BoR10qr8.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\preflight.cjs
+- internal/preload
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    at Function._load (node:internal/modules/cjs/loader:1211:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.require (node:internal/modules/cjs/loader:1487:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs:1:211)
+    at Module._compile (node:internal/modules/cjs/loader:1730:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\register-D46fvsV_.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\cjs\\index.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\get-pipe-path-BoR10qr8.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\preflight.cjs',
+    'internal/preload'
+  ]
+}
+
+Node.js v22.15.0
+node:internal/modules/cjs/loader:1404
+  throw err;
+  ^
+
+Error: Cannot find module 'get-tsconfig'
+Require stack:
+- D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\cjs\index.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\get-pipe-path-BoR10qr8.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\preflight.cjs
+- internal/preload
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    at Function._load (node:internal/modules/cjs/loader:1211:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.require (node:internal/modules/cjs/loader:1487:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs:1:211)
+    at Module._compile (node:internal/modules/cjs/loader:1730:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\register-D46fvsV_.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\cjs\\index.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\get-pipe-path-BoR10qr8.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\preflight.cjs',
+    'internal/preload'
+  ]
+}
+
+Node.js v22.15.0
+node:internal/modules/cjs/loader:1404
+  throw err;
+  ^
+
+Error: Cannot find module 'get-tsconfig'
+Require stack:
+- D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\cjs\index.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\get-pipe-path-BoR10qr8.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\preflight.cjs
+- internal/preload
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    at Function._load (node:internal/modules/cjs/loader:1211:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.require (node:internal/modules/cjs/loader:1487:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs:1:211)
+    at Module._compile (node:internal/modules/cjs/loader:1730:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\register-D46fvsV_.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\cjs\\index.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\get-pipe-path-BoR10qr8.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\preflight.cjs',
+    'internal/preload'
+  ]
+}
+
+Node.js v22.15.0
+node:internal/modules/cjs/loader:1404
+  throw err;
+  ^
+
+Error: Cannot find module 'get-tsconfig'
+Require stack:
+- D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\cjs\index.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\get-pipe-path-BoR10qr8.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\preflight.cjs
+- internal/preload
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    at Function._load (node:internal/modules/cjs/loader:1211:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.require (node:internal/modules/cjs/loader:1487:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs:1:211)
+    at Module._compile (node:internal/modules/cjs/loader:1730:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\register-D46fvsV_.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\cjs\\index.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\get-pipe-path-BoR10qr8.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\preflight.cjs',
+    'internal/preload'
+  ]
+}
+
+Node.js v22.15.0
+node:internal/modules/cjs/loader:1404
+  throw err;
+  ^
+
+Error: Cannot find module 'get-tsconfig'
+Require stack:
+- D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\cjs\index.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\get-pipe-path-BoR10qr8.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\preflight.cjs
+- internal/preload
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    at Function._load (node:internal/modules/cjs/loader:1211:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.require (node:internal/modules/cjs/loader:1487:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs:1:211)
+    at Module._compile (node:internal/modules/cjs/loader:1730:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\register-D46fvsV_.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\cjs\\index.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\get-pipe-path-BoR10qr8.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\preflight.cjs',
+    'internal/preload'
+  ]
+}
+
+Node.js v22.15.0
+node:internal/modules/cjs/loader:1404
+  throw err;
+  ^
+
+Error: Cannot find module 'get-tsconfig'
+Require stack:
+- D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\cjs\index.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\get-pipe-path-BoR10qr8.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\preflight.cjs
+- internal/preload
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    at Function._load (node:internal/modules/cjs/loader:1211:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.require (node:internal/modules/cjs/loader:1487:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs:1:211)
+    at Module._compile (node:internal/modules/cjs/loader:1730:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\register-D46fvsV_.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\cjs\\index.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\get-pipe-path-BoR10qr8.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\preflight.cjs',
+    'internal/preload'
+  ]
+}
+
+Node.js v22.15.0
+node:internal/modules/cjs/loader:1404
+  throw err;
+  ^
+
+Error: Cannot find module 'get-tsconfig'
+Require stack:
+- D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\cjs\index.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\get-pipe-path-BoR10qr8.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\preflight.cjs
+- internal/preload
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    at Function._load (node:internal/modules/cjs/loader:1211:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.require (node:internal/modules/cjs/loader:1487:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs:1:211)
+    at Module._compile (node:internal/modules/cjs/loader:1730:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\register-D46fvsV_.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\cjs\\index.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\get-pipe-path-BoR10qr8.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\preflight.cjs',
+    'internal/preload'
+  ]
+}
+
+Node.js v22.15.0
+node:internal/modules/cjs/loader:1404
+  throw err;
+  ^
+
+Error: Cannot find module 'get-tsconfig'
+Require stack:
+- D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\cjs\index.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\get-pipe-path-BoR10qr8.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\preflight.cjs
+- internal/preload
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    at Function._load (node:internal/modules/cjs/loader:1211:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.require (node:internal/modules/cjs/loader:1487:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs:1:211)
+    at Module._compile (node:internal/modules/cjs/loader:1730:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\register-D46fvsV_.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\cjs\\index.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\get-pipe-path-BoR10qr8.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\preflight.cjs',
+    'internal/preload'
+  ]
+}
+
+Node.js v22.15.0
+node:internal/modules/cjs/loader:1404
+  throw err;
+  ^
+
+Error: Cannot find module 'get-tsconfig'
+Require stack:
+- D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\cjs\index.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\get-pipe-path-BoR10qr8.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\preflight.cjs
+- internal/preload
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    at Function._load (node:internal/modules/cjs/loader:1211:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.require (node:internal/modules/cjs/loader:1487:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs:1:211)
+    at Module._compile (node:internal/modules/cjs/loader:1730:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\register-D46fvsV_.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\cjs\\index.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\get-pipe-path-BoR10qr8.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\preflight.cjs',
+    'internal/preload'
+  ]
+}
+
+Node.js v22.15.0
+node:internal/modules/cjs/loader:1404
+  throw err;
+  ^
+
+Error: Cannot find module 'get-tsconfig'
+Require stack:
+- D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\cjs\index.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\get-pipe-path-BoR10qr8.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\preflight.cjs
+- internal/preload
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    at Function._load (node:internal/modules/cjs/loader:1211:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.require (node:internal/modules/cjs/loader:1487:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs:1:211)
+    at Module._compile (node:internal/modules/cjs/loader:1730:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\register-D46fvsV_.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\cjs\\index.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\get-pipe-path-BoR10qr8.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\preflight.cjs',
+    'internal/preload'
+  ]
+}
+
+Node.js v22.15.0
+node:internal/modules/cjs/loader:1404
+  throw err;
+  ^
+
+Error: Cannot find module 'get-tsconfig'
+Require stack:
+- D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\cjs\index.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\get-pipe-path-BoR10qr8.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\preflight.cjs
+- internal/preload
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    at Function._load (node:internal/modules/cjs/loader:1211:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.require (node:internal/modules/cjs/loader:1487:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs:1:211)
+    at Module._compile (node:internal/modules/cjs/loader:1730:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\register-D46fvsV_.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\cjs\\index.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\get-pipe-path-BoR10qr8.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\preflight.cjs',
+    'internal/preload'
+  ]
+}
+
+Node.js v22.15.0
+node:internal/modules/cjs/loader:1404
+  throw err;
+  ^
+
+Error: Cannot find module 'get-tsconfig'
+Require stack:
+- D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\cjs\index.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\get-pipe-path-BoR10qr8.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\preflight.cjs
+- internal/preload
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    at Function._load (node:internal/modules/cjs/loader:1211:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.require (node:internal/modules/cjs/loader:1487:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs:1:211)
+    at Module._compile (node:internal/modules/cjs/loader:1730:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\register-D46fvsV_.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\cjs\\index.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\get-pipe-path-BoR10qr8.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\preflight.cjs',
+    'internal/preload'
+  ]
+}
+
+Node.js v22.15.0
+node:internal/modules/cjs/loader:1404
+  throw err;
+  ^
+
+Error: Cannot find module 'get-tsconfig'
+Require stack:
+- D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\cjs\index.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\get-pipe-path-BoR10qr8.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\preflight.cjs
+- internal/preload
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    at Function._load (node:internal/modules/cjs/loader:1211:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.require (node:internal/modules/cjs/loader:1487:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs:1:211)
+    at Module._compile (node:internal/modules/cjs/loader:1730:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\register-D46fvsV_.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\cjs\\index.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\get-pipe-path-BoR10qr8.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\preflight.cjs',
+    'internal/preload'
+  ]
+}
+
+Node.js v22.15.0
+node:internal/modules/cjs/loader:1404
+  throw err;
+  ^
+
+Error: Cannot find module 'get-tsconfig'
+Require stack:
+- D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\cjs\index.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\get-pipe-path-BoR10qr8.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\preflight.cjs
+- internal/preload
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    at Function._load (node:internal/modules/cjs/loader:1211:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.require (node:internal/modules/cjs/loader:1487:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs:1:211)
+    at Module._compile (node:internal/modules/cjs/loader:1730:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\register-D46fvsV_.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\cjs\\index.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\get-pipe-path-BoR10qr8.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\preflight.cjs',
+    'internal/preload'
+  ]
+}
+
+Node.js v22.15.0
+node:internal/modules/cjs/loader:1404
+  throw err;
+  ^
+
+Error: Cannot find module 'get-tsconfig'
+Require stack:
+- D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\cjs\index.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\get-pipe-path-BoR10qr8.cjs
+- D:\lms\lms-backend\node_modules\tsx\dist\preflight.cjs
+- internal/preload
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    at Function._load (node:internal/modules/cjs/loader:1211:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.require (node:internal/modules/cjs/loader:1487:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (D:\lms\lms-backend\node_modules\tsx\dist\register-D46fvsV_.cjs:1:211)
+    at Module._compile (node:internal/modules/cjs/loader:1730:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\register-D46fvsV_.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\cjs\\index.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\get-pipe-path-BoR10qr8.cjs',
+    'D:\\lms\\lms-backend\\node_modules\\tsx\\dist\\preflight.cjs',
+    'internal/preload'
+  ]
+}
+
+Node.js v22.15.0
+node:internal/modules/cjs/loader:1404
+  throw err;
+  ^
+
+Error: Cannot find module 'D:\lms\lms-backend\node_modules\tsx\dist\preflight.cjs'
+Require stack:
+- internal/preload
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    at Function._load (node:internal/modules/cjs/loader:1211:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.require (node:internal/modules/cjs/loader:1487:12)
+    at node:internal/modules/cjs/loader:2045:12
+    at loadPreloadModules (node:internal/process/pre_execution:734:5)
+    at setupUserModules (node:internal/process/pre_execution:206:5) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [ 'internal/preload' ]
+}
+
+Node.js v22.15.0
+node:internal/modules/cjs/loader:1404
+  throw err;
+  ^
+
+Error: Cannot find module 'D:\lms\lms-backend\node_modules\tsx\dist\preflight.cjs'
+Require stack:
+- internal/preload
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    at Function._load (node:internal/modules/cjs/loader:1211:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.require (node:internal/modules/cjs/loader:1487:12)
+    at node:internal/modules/cjs/loader:2045:12
+    at loadPreloadModules (node:internal/process/pre_execution:734:5)
+    at setupUserModules (node:internal/process/pre_execution:206:5) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [ 'internal/preload' ]
+}
+
+Node.js v22.15.0
+node:internal/modules/cjs/loader:1404
+  throw err;
+  ^
+
+Error: Cannot find module 'D:\lms\lms-backend\node_modules\tsx\dist\preflight.cjs'
+Require stack:
+- internal/preload
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    at Function._load (node:internal/modules/cjs/loader:1211:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.require (node:internal/modules/cjs/loader:1487:12)
+    at node:internal/modules/cjs/loader:2045:12
+    at loadPreloadModules (node:internal/process/pre_execution:734:5)
+    at setupUserModules (node:internal/process/pre_execution:206:5) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [ 'internal/preload' ]
+}
+
+Node.js v22.15.0
+node:internal/modules/cjs/loader:1404
+  throw err;
+  ^
+
+Error: Cannot find module 'D:\lms\lms-backend\node_modules\tsx\dist\preflight.cjs'
+Require stack:
+- internal/preload
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    at Function._load (node:internal/modules/cjs/loader:1211:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.require (node:internal/modules/cjs/loader:1487:12)
+    at node:internal/modules/cjs/loader:2045:12
+    at loadPreloadModules (node:internal/process/pre_execution:734:5)
+    at setupUserModules (node:internal/process/pre_execution:206:5) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [ 'internal/preload' ]
+}
+
+Node.js v22.15.0
+node:internal/modules/cjs/loader:1404
+  throw err;
+  ^
+
+Error: Cannot find module 'D:\lms\lms-backend\node_modules\tsx\dist\preflight.cjs'
+Require stack:
+- internal/preload
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    at Function._load (node:internal/modules/cjs/loader:1211:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.require (node:internal/modules/cjs/loader:1487:12)
+    at node:internal/modules/cjs/loader:2045:12
+    at loadPreloadModules (node:internal/process/pre_execution:734:5)
+    at setupUserModules (node:internal/process/pre_execution:206:5) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [ 'internal/preload' ]
+}
+
+Node.js v22.15.0
+node:internal/modules/cjs/loader:1404
+  throw err;
+  ^
+
+Error: Cannot find module 'D:\lms\lms-backend\node_modules\tsx\dist\preflight.cjs'
+Require stack:
+- internal/preload
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    at Function._load (node:internal/modules/cjs/loader:1211:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.require (node:internal/modules/cjs/loader:1487:12)
+    at node:internal/modules/cjs/loader:2045:12
+    at loadPreloadModules (node:internal/process/pre_execution:734:5)
+    at setupUserModules (node:internal/process/pre_execution:206:5) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [ 'internal/preload' ]
+}
+
+Node.js v22.15.0
+node:internal/modules/cjs/loader:1404
+  throw err;
+  ^
+
+Error: Cannot find module 'D:\lms\lms-backend\node_modules\tsx\dist\preflight.cjs'
+Require stack:
+- internal/preload
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    at Function._load (node:internal/modules/cjs/loader:1211:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.require (node:internal/modules/cjs/loader:1487:12)
+    at node:internal/modules/cjs/loader:2045:12
+    at loadPreloadModules (node:internal/process/pre_execution:734:5)
+    at setupUserModules (node:internal/process/pre_execution:206:5) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [ 'internal/preload' ]
+}
+
+Node.js v22.15.0
+node:internal/modules/cjs/loader:1404
+  throw err;
+  ^
+
+Error: Cannot find module 'D:\lms\lms-backend\node_modules\tsx\dist\preflight.cjs'
+Require stack:
+- internal/preload
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    at Function._load (node:internal/modules/cjs/loader:1211:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.require (node:internal/modules/cjs/loader:1487:12)
+    at node:internal/modules/cjs/loader:2045:12
+    at loadPreloadModules (node:internal/process/pre_execution:734:5)
+    at setupUserModules (node:internal/process/pre_execution:206:5) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [ 'internal/preload' ]
+}
+
+Node.js v22.15.0

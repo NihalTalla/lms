@@ -1,0 +1,160 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Codify LMS Lambda API, SQS submission queue, and submission worker.
+
+Parameters:
+  AllowedOrigins:
+    Type: String
+  CompilerServiceUrl:
+    Type: String
+  DatabaseUrl:
+    Type: String
+    NoEcho: true
+  RedisUrl:
+    Type: String
+    NoEcho: true
+  JwtSecret:
+    Type: String
+    NoEcho: true
+  RefreshTokenSecret:
+    Type: String
+    NoEcho: true
+  S3BucketName:
+    Type: String
+  CloudFrontDomain:
+    Type: String
+  PrivateSubnetIds:
+    Type: List<AWS::EC2::Subnet::Id>
+  LambdaSecurityGroupIds:
+    Type: List<AWS::EC2::SecurityGroup::Id>
+  CompilerMaxOutputBytes:
+    Type: Number
+    Default: 65536
+  SubmissionCodeMaxBytes:
+    Type: Number
+    Default: 65536
+
+Globals:
+  Function:
+    Runtime: nodejs20.x
+    Architectures:
+      - x86_64
+    Timeout: 30
+    MemorySize: 1024
+    Tracing: Active
+    VpcConfig:
+      SubnetIds: !Ref PrivateSubnetIds
+      SecurityGroupIds: !Ref LambdaSecurityGroupIds
+    Environment:
+      Variables:
+        NODE_ENV: production
+        PORT: '3000'
+        ALLOWED_ORIGINS: !Ref AllowedOrigins
+        COMPILER_SERVICE_URL: !Ref CompilerServiceUrl
+        JWT_SECRET: !Ref JwtSecret
+        JWT_EXPIRES_IN: 15m
+        REFRESH_TOKEN_SECRET: !Ref RefreshTokenSecret
+        DATABASE_URL: !Ref DatabaseUrl
+        REDIS_URL: !Ref RedisUrl
+        AWS_REGION: !Ref AWS::Region
+        S3_BUCKET_NAME: !Ref S3BucketName
+        CLOUDFRONT_DOMAIN: !Ref CloudFrontDomain
+        BCRYPT_ROUNDS: '12'
+        RATE_LIMIT_WINDOW_MS: '60000'
+        RATE_LIMIT_MAX: '100'
+        COMPILER_TIMEOUT_MS: '8000'
+        COMPILER_MEMORY_MB: '128'
+        COMPILER_MAX_OUTPUT_BYTES: !Ref CompilerMaxOutputBytes
+        SUBMISSION_CODE_MAX_BYTES: !Ref SubmissionCodeMaxBytes
+        SQS_SUBMISSIONS_QUEUE_URL: !Ref SubmissionsQueue
+
+Resources:
+  ApiGateway:
+    Type: AWS::Serverless::HttpApi
+
+  SubmissionsQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: lms-submissions
+      VisibilityTimeout: 90
+      RedrivePolicy:
+        deadLetterTargetArn: !GetAtt SubmissionsDeadLetterQueue.Arn
+        maxReceiveCount: 3
+
+  SubmissionsDeadLetterQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: lms-submissions-dlq
+
+  ApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/lambda/api.handler
+      CodeUri: .
+      Events:
+        Proxy:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref ApiGateway
+            Path: /{proxy+}
+            Method: ANY
+        Root:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref ApiGateway
+            Path: /
+            Method: ANY
+      Policies:
+        - SQSSendMessagePolicy:
+            QueueName: !GetAtt SubmissionsQueue.QueueName
+        - S3CrudPolicy:
+            BucketName: !Ref S3BucketName
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        EntryPoints:
+          - src/lambda/api.ts
+        External:
+          - '@prisma/client'
+          - '.prisma/client'
+        Minify: true
+        Sourcemap: true
+        Target: es2022
+
+  SubmissionWorkerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/lambda/submissionWorker.handler
+      CodeUri: .
+      Timeout: 60
+      MemorySize: 1024
+      Events:
+        Queue:
+          Type: SQS
+          Properties:
+            Queue: !GetAtt SubmissionsQueue.Arn
+            BatchSize: 5
+            FunctionResponseTypes:
+              - ReportBatchItemFailures
+      Policies:
+        - SQSPollerPolicy:
+            QueueName: !GetAtt SubmissionsQueue.QueueName
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        EntryPoints:
+          - src/lambda/submissionWorker.ts
+        External:
+          - '@prisma/client'
+          - '.prisma/client'
+        Minify: true
+        Sourcemap: true
+        Target: es2022
+
+Outputs:
+  ApiUrl:
+    Description: API Gateway URL
+    Value: !Sub 'https://${ApiGateway}.execute-api.${AWS::Region}.amazonaws.com'
+  SubmissionsQueueUrl:
+    Description: Submission queue URL
+    Value: !Ref SubmissionsQueue

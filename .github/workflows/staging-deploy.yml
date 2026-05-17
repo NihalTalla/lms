@@ -1,0 +1,27 @@
+name: Staging Deploy (manual)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Run staging deploy script
+        run: |
+          chmod +x ./scripts/deploy-staging.sh
+          ./scripts/deploy-staging.sh
+        env:
+          S3_BUCKET: ${{ secrets.STAGING_S3_BUCKET }}
+          STACK_NAME: ${{ secrets.STAGING_STACK_NAME }}
+          PARAMETER_OVERRIDES: ${{ secrets.STAGING_PARAMETER_OVERRIDES }}

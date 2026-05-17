@@ -1,0 +1,12 @@
+// limits.h
+#ifndef LIMITS_H
+#define LIMITS_H
+#define INT_MAX   2147483647
+#define INT_MIN   (-2147483648)
+#define UINT_MAX  4294967295u
+#define LONG_MAX  9223372036854775807
+#define LLONG_MAX 9223372036854775807
+#define LLONG_MIN (-9223372036854775808)
+#define CHAR_MAX  127
+#define CHAR_MIN  (-128)
+#endif

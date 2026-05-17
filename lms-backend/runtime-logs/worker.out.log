@@ -1,0 +1,699 @@
+
+> lms-backend@0.1.0 worker
+> tsx src/worker.ts
+
+[2026-05-03 18:43:05.658 +0530] [32mINFO[39m: [36mredis connected[39m
+[2026-05-03 18:43:05.662 +0530] [32mINFO[39m: [36mworker started[39m
+    env: "development"
+prisma:query SELECT 1
+prisma:query SELECT "public"."Submission"."id", "public"."Submission"."userId", "public"."Submission"."problemId", "public"."Submission"."language"::text, "public"."Submission"."code", "public"."Submission"."status"::text, "public"."Submission"."verdict"::text, "public"."Submission"."stdout", "public"."Submission"."stderr", "public"."Submission"."passedTests", "public"."Submission"."totalTests", "public"."Submission"."execTimeMs", "public"."Submission"."memoryKb", "public"."Submission"."score", "public"."Submission"."contestId", "public"."Submission"."gradedBy", "public"."Submission"."gradedAt", "public"."Submission"."createdAt" FROM "public"."Submission" WHERE ("public"."Submission"."id" = $1 AND 1=1) LIMIT $2 OFFSET $3
+prisma:query SELECT "public"."Problem"."id", "public"."Problem"."title", "public"."Problem"."description", "public"."Problem"."difficulty"::text, "public"."Problem"."tags", "public"."Problem"."timeLimit", "public"."Problem"."memoryLimit", "public"."Problem"."isPublished", "public"."Problem"."createdAt", "public"."Problem"."updatedAt" FROM "public"."Problem" WHERE "public"."Problem"."id" IN ($1) OFFSET $2
+prisma:query SELECT "public"."TestCase"."id", "public"."TestCase"."order", "public"."TestCase"."input", "public"."TestCase"."expected", "public"."TestCase"."problemId" FROM "public"."TestCase" WHERE "public"."TestCase"."problemId" IN ($1) ORDER BY "public"."TestCase"."order" ASC OFFSET $2
+prisma:query UPDATE "public"."Submission" SET "status" = CAST($1::text AS "public"."SubmissionStatus"), "totalTests" = $2 WHERE ("public"."Submission"."id" = $3 AND 1=1) RETURNING "public"."Submission"."id", "public"."Submission"."userId", "public"."Submission"."problemId", "public"."Submission"."language"::text, "public"."Submission"."code", "public"."Submission"."status"::text, "public"."Submission"."verdict"::text, "public"."Submission"."stdout", "public"."Submission"."stderr", "public"."Submission"."passedTests", "public"."Submission"."totalTests", "public"."Submission"."execTimeMs", "public"."Submission"."memoryKb", "public"."Submission"."score", "public"."Submission"."contestId", "public"."Submission"."gradedBy", "public"."Submission"."gradedAt", "public"."Submission"."createdAt"
+prisma:query UPDATE "public"."Submission" SET "status" = CAST($1::text AS "public"."SubmissionStatus"), "verdict" = CAST($2::text AS "public"."Verdict"), "passedTests" = $3, "totalTests" = $4, "stdout" = $5, "stderr" = $6, "execTimeMs" = $7 WHERE ("public"."Submission"."id" = $8 AND 1=1) RETURNING "public"."Submission"."id", "public"."Submission"."userId", "public"."Submission"."problemId", "public"."Submission"."language"::text, "public"."Submission"."code", "public"."Submission"."status"::text, "public"."Submission"."verdict"::text, "public"."Submission"."stdout", "public"."Submission"."stderr", "public"."Submission"."passedTests", "public"."Submission"."totalTests", "public"."Submission"."execTimeMs", "public"."Submission"."memoryKb", "public"."Submission"."score", "public"."Submission"."contestId", "public"."Submission"."gradedBy", "public"."Submission"."gradedAt", "public"."Submission"."createdAt"
+[2026-05-03 18:43:28.380 +0530] [32mINFO[39m: [36mStarting submission processing[39m
+    submissionId: "542237f8-6b87-4739-ae5c-c055971b55e2"
+    userId: "046f31e1-2f28-4f04-bc1d-85cb34e180de"
+    problemId: "33333333-3333-3333-3333-333333333333"
+    language: "python"
+[2026-05-03 18:43:28.393 +0530] [32mINFO[39m: [36mProcessing submission with test cases[39m
+    submissionId: "542237f8-6b87-4739-ae5c-c055971b55e2"
+    totalTests: 3
+[2026-05-03 18:43:28.398 +0530] [34mDEBUG[39m: [36mRunning test case[39m
+    submissionId: "542237f8-6b87-4739-ae5c-c055971b55e2"
+    testCaseIndex: 1
+    total: 3
+[2026-05-03 18:43:28.398 +0530] [34mDEBUG[39m: [36mCalling compiler service[39m
+    submissionId: "542237f8-6b87-4739-ae5c-c055971b55e2"
+    testCaseIndex: 0
+[2026-05-03 18:43:28.423 +0530] [34mDEBUG[39m: [36mTest case passed[39m
+    submissionId: "542237f8-6b87-4739-ae5c-c055971b55e2"
+    testCaseIndex: 0
+    passed: 1
+[2026-05-03 18:43:28.423 +0530] [34mDEBUG[39m: [36mRunning test case[39m
+    submissionId: "542237f8-6b87-4739-ae5c-c055971b55e2"
+    testCaseIndex: 2
+    total: 3
+[2026-05-03 18:43:28.423 +0530] [34mDEBUG[39m: [36mCalling compiler service[39m
+    submissionId: "542237f8-6b87-4739-ae5c-c055971b55e2"
+    testCaseIndex: 1
+[2026-05-03 18:43:28.437 +0530] [34mDEBUG[39m: [36mTest case passed[39m
+    submissionId: "542237f8-6b87-4739-ae5c-c055971b55e2"
+    testCaseIndex: 1
+    passed: 2
+[2026-05-03 18:43:28.437 +0530] [34mDEBUG[39m: [36mRunning test case[39m
+    submissionId: "542237f8-6b87-4739-ae5c-c055971b55e2"
+    testCaseIndex: 3
+    total: 3
+[2026-05-03 18:43:28.437 +0530] [34mDEBUG[39m: [36mCalling compiler service[39m
+    submissionId: "542237f8-6b87-4739-ae5c-c055971b55e2"
+    testCaseIndex: 2
+[2026-05-03 18:43:28.451 +0530] [34mDEBUG[39m: [36mTest case passed[39m
+    submissionId: "542237f8-6b87-4739-ae5c-c055971b55e2"
+    testCaseIndex: 2
+    passed: 3
+[2026-05-03 18:43:28.451 +0530] [32mINFO[39m: [36mSubmission evaluation complete[39m
+    submissionId: "542237f8-6b87-4739-ae5c-c055971b55e2"
+    verdict: "accepted"
+    passed: 3
+    total: 3
+    execTimeMs: 33
+[2026-05-03 18:43:28.461 +0530] [32mINFO[39m: [36msubmission sqs message completed[39m
+    messageId: "d4743bfe-23dd-4c58-bf5e-f23b5ddf24b0"
+prisma:query SELECT 1
+prisma:query SELECT "public"."Submission"."id", "public"."Submission"."userId", "public"."Submission"."problemId", "public"."Submission"."language"::text, "public"."Submission"."code", "public"."Submission"."status"::text, "public"."Submission"."verdict"::text, "public"."Submission"."stdout", "public"."Submission"."stderr", "public"."Submission"."passedTests", "public"."Submission"."totalTests", "public"."Submission"."execTimeMs", "public"."Submission"."memoryKb", "public"."Submission"."score", "public"."Submission"."contestId", "public"."Submission"."gradedBy", "public"."Submission"."gradedAt", "public"."Submission"."createdAt" FROM "public"."Submission" WHERE ("public"."Submission"."id" = $1 AND 1=1) LIMIT $2 OFFSET $3
+prisma:query SELECT "public"."Problem"."id", "public"."Problem"."title", "public"."Problem"."description", "public"."Problem"."difficulty"::text, "public"."Problem"."tags", "public"."Problem"."timeLimit", "public"."Problem"."memoryLimit", "public"."Problem"."isPublished", "public"."Problem"."createdAt", "public"."Problem"."updatedAt" FROM "public"."Problem" WHERE "public"."Problem"."id" IN ($1) OFFSET $2
+prisma:query SELECT "public"."TestCase"."id", "public"."TestCase"."order", "public"."TestCase"."input", "public"."TestCase"."expected", "public"."TestCase"."problemId" FROM "public"."TestCase" WHERE "public"."TestCase"."problemId" IN ($1) ORDER BY "public"."TestCase"."order" ASC OFFSET $2
+prisma:query UPDATE "public"."Submission" SET "status" = CAST($1::text AS "public"."SubmissionStatus"), "totalTests" = $2 WHERE ("public"."Submission"."id" = $3 AND 1=1) RETURNING "public"."Submission"."id", "public"."Submission"."userId", "public"."Submission"."problemId", "public"."Submission"."language"::text, "public"."Submission"."code", "public"."Submission"."status"::text, "public"."Submission"."verdict"::text, "public"."Submission"."stdout", "public"."Submission"."stderr", "public"."Submission"."passedTests", "public"."Submission"."totalTests", "public"."Submission"."execTimeMs", "public"."Submission"."memoryKb", "public"."Submission"."score", "public"."Submission"."contestId", "public"."Submission"."gradedBy", "public"."Submission"."gradedAt", "public"."Submission"."createdAt"
+prisma:query UPDATE "public"."Submission" SET "status" = CAST($1::text AS "public"."SubmissionStatus"), "verdict" = CAST($2::text AS "public"."Verdict"), "passedTests" = $3, "totalTests" = $4, "stdout" = $5, "stderr" = $6, "execTimeMs" = $7 WHERE ("public"."Submission"."id" = $8 AND 1=1) RETURNING "public"."Submission"."id", "public"."Submission"."userId", "public"."Submission"."problemId", "public"."Submission"."language"::text, "public"."Submission"."code", "public"."Submission"."status"::text, "public"."Submission"."verdict"::text, "public"."Submission"."stdout", "public"."Submission"."stderr", "public"."Submission"."passedTests", "public"."Submission"."totalTests", "public"."Submission"."execTimeMs", "public"."Submission"."memoryKb", "public"."Submission"."score", "public"."Submission"."contestId", "public"."Submission"."gradedBy", "public"."Submission"."gradedAt", "public"."Submission"."createdAt"
+[2026-05-03 18:44:51.452 +0530] [32mINFO[39m: [36mStarting submission processing[39m
+    submissionId: "c28a2795-1266-43aa-8b78-dd41f281bdce"
+    userId: "046f31e1-2f28-4f04-bc1d-85cb34e180de"
+    problemId: "33333333-3333-3333-3333-333333333333"
+    language: "python"
+[2026-05-03 18:44:51.459 +0530] [32mINFO[39m: [36mProcessing submission with test cases[39m
+    submissionId: "c28a2795-1266-43aa-8b78-dd41f281bdce"
+    totalTests: 3
+[2026-05-03 18:44:51.463 +0530] [34mDEBUG[39m: [36mRunning test case[39m
+    submissionId: "c28a2795-1266-43aa-8b78-dd41f281bdce"
+    testCaseIndex: 1
+    total: 3
+[2026-05-03 18:44:51.463 +0530] [34mDEBUG[39m: [36mCalling compiler service[39m
+    submissionId: "c28a2795-1266-43aa-8b78-dd41f281bdce"
+    testCaseIndex: 0
+[2026-05-03 18:44:51.480 +0530] [34mDEBUG[39m: [36mTest case passed[39m
+    submissionId: "c28a2795-1266-43aa-8b78-dd41f281bdce"
+    testCaseIndex: 0
+    passed: 1
+[2026-05-03 18:44:51.480 +0530] [34mDEBUG[39m: [36mRunning test case[39m
+    submissionId: "c28a2795-1266-43aa-8b78-dd41f281bdce"
+    testCaseIndex: 2
+    total: 3
+[2026-05-03 18:44:51.480 +0530] [34mDEBUG[39m: [36mCalling compiler service[39m
+    submissionId: "c28a2795-1266-43aa-8b78-dd41f281bdce"
+    testCaseIndex: 1
+[2026-05-03 18:44:51.493 +0530] [34mDEBUG[39m: [36mTest case passed[39m
+    submissionId: "c28a2795-1266-43aa-8b78-dd41f281bdce"
+    testCaseIndex: 1
+    passed: 2
+[2026-05-03 18:44:51.493 +0530] [34mDEBUG[39m: [36mRunning test case[39m
+    submissionId: "c28a2795-1266-43aa-8b78-dd41f281bdce"
+    testCaseIndex: 3
+    total: 3
+[2026-05-03 18:44:51.493 +0530] [34mDEBUG[39m: [36mCalling compiler service[39m
+    submissionId: "c28a2795-1266-43aa-8b78-dd41f281bdce"
+    testCaseIndex: 2
+[2026-05-03 18:44:51.506 +0530] [34mDEBUG[39m: [36mTest case passed[39m
+    submissionId: "c28a2795-1266-43aa-8b78-dd41f281bdce"
+    testCaseIndex: 2
+    passed: 3
+[2026-05-03 18:44:51.506 +0530] [32mINFO[39m: [36mSubmission evaluation complete[39m
+    submissionId: "c28a2795-1266-43aa-8b78-dd41f281bdce"
+    verdict: "accepted"
+    passed: 3
+    total: 3
+    execTimeMs: 30
+[2026-05-03 18:44:51.514 +0530] [32mINFO[39m: [36msubmission sqs message completed[39m
+    messageId: "0912cbe1-3d40-49b9-848e-4f6f76a9e33e"
+[2026-05-03 19:17:30.127 +0530] [31mERROR[39m: [36msubmission sqs poller stopped unexpectedly[39m
+    err: {
+      "type": "Error",
+      "message": "socket hang up",
+      "stack":
+          TimeoutError: socket hang up
+              at Socket.socketOnEnd (node:_http_client:542:25)
+              at Socket.emit (node:events:530:35)
+              at endReadableNT (node:internal/streams/readable:1698:12)
+              at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+      "code": "ECONNRESET",
+      "name": "TimeoutError",
+      "$metadata": {
+        "attempts": 3,
+        "totalRetryDelay": 143
+      }
+    }
+prisma:error Error in PostgreSQL connection: Error { kind: Db, cause: Some(DbError { severity: "FATAL", parsed_severity: Some(Fatal), code: SqlState(E57P01), message: "terminating connection due to administrator command", detail: None, hint: None, position: None, where_: None, schema: None, table: None, column: None, datatype: None, constraint: None, file: Some("postgres.c"), line: Some(3286), routine: Some("ProcessInterrupts") }) }
+[2026-05-03 19:24:41.679 +0530] [33mWARN[39m: [36mredis reconnecting[39m
+[2026-05-03 19:24:41.738 +0530] [32mINFO[39m: [36mredis connected[39m
+[2026-05-03 19:24:41.740 +0530] [33mWARN[39m: [36mredis reconnecting[39m
+[2026-05-03 19:24:41.853 +0530] [32mINFO[39m: [36mredis connected[39m
+[2026-05-03 19:24:41.856 +0530] [33mWARN[39m: [36mredis reconnecting[39m
+[2026-05-03 19:24:42.019 +0530] [32mINFO[39m: [36mredis connected[39m
+[2026-05-03 19:24:42.023 +0530] [33mWARN[39m: [36mredis reconnecting[39m
+[2026-05-03 19:24:42.236 +0530] [32mINFO[39m: [36mredis connected[39m
+[2026-05-03 19:24:42.238 +0530] [33mWARN[39m: [36mredis reconnecting[39m
+[2026-05-03 19:24:42.503 +0530] [32mINFO[39m: [36mredis connected[39m
+[2026-05-03 19:24:42.508 +0530] [33mWARN[39m: [36mredis reconnecting[39m
+[2026-05-03 19:24:42.821 +0530] [32mINFO[39m: [36mredis connected[39m
+[2026-05-03 19:24:42.823 +0530] [33mWARN[39m: [36mredis reconnecting[39m
+[2026-05-03 19:24:43.187 +0530] [32mINFO[39m: [36mredis connected[39m
+[2026-05-03 19:24:43.189 +0530] [33mWARN[39m: [36mredis reconnecting[39m
+[2026-05-03 19:24:43.603 +0530] [32mINFO[39m: [36mredis connected[39m
+[2026-05-03 19:24:43.605 +0530] [33mWARN[39m: [36mredis reconnecting[39m
+[2026-05-03 19:24:44.071 +0530] [31mERROR[39m: [36mredis error[39m
+    err: {
+      "type": "AggregateError",
+      "message": "",
+      "stack":
+          AggregateError [ECONNREFUSED]: 
+              at internalConnectMultiple (node:net:1139:18)
+              at afterConnectMultiple (node:net:1714:7)
+      "aggregateErrors": [
+        {
+          "type": "Error",
+          "message": "connect ECONNREFUSED ::1:6379",
+          "stack":
+              Error: connect ECONNREFUSED ::1:6379
+                  at createConnectionError (node:net:1677:14)
+                  at afterConnectMultiple (node:net:1707:16)
+          "errno": -4078,
+          "code": "ECONNREFUSED",
+          "syscall": "connect",
+          "address": "::1",
+          "port": 6379
+        },
+        {
+          "type": "Error",
+          "message": "connect ECONNREFUSED 127.0.0.1:6379",
+          "stack":
+              Error: connect ECONNREFUSED 127.0.0.1:6379
+                  at createConnectionError (node:net:1677:14)
+                  at afterConnectMultiple (node:net:1707:16)
+          "errno": -4078,
+          "code": "ECONNREFUSED",
+          "syscall": "connect",
+          "address": "127.0.0.1",
+          "port": 6379
+        }
+      ],
+      "code": "ECONNREFUSED"
+    }
+[2026-05-03 19:24:44.071 +0530] [33mWARN[39m: [36mredis reconnecting[39m
+[2026-05-03 19:24:44.575 +0530] [31mERROR[39m: [36mredis error[39m
+    err: {
+      "type": "AggregateError",
+      "message": "",
+      "stack":
+          AggregateError [ECONNREFUSED]: 
+              at internalConnectMultiple (node:net:1139:18)
+              at afterConnectMultiple (node:net:1714:7)
+      "aggregateErrors": [
+        {
+          "type": "Error",
+          "message": "connect ECONNREFUSED ::1:6379",
+          "stack":
+              Error: connect ECONNREFUSED ::1:6379
+                  at createConnectionError (node:net:1677:14)
+                  at afterConnectMultiple (node:net:1707:16)
+          "errno": -4078,
+          "code": "ECONNREFUSED",
+          "syscall": "connect",
+          "address": "::1",
+          "port": 6379
+        },
+        {
+          "type": "Error",
+          "message": "connect ECONNREFUSED 127.0.0.1:6379",
+          "stack":
+              Error: connect ECONNREFUSED 127.0.0.1:6379
+                  at createConnectionError (node:net:1677:14)
+                  at afterConnectMultiple (node:net:1707:16)
+          "errno": -4078,
+          "code": "ECONNREFUSED",
+          "syscall": "connect",
+          "address": "127.0.0.1",
+          "port": 6379
+        }
+      ],
+      "code": "ECONNREFUSED"
+    }
+[2026-05-03 19:24:44.575 +0530] [33mWARN[39m: [36mredis reconnecting[39m
+[2026-05-03 19:24:45.137 +0530] [31mERROR[39m: [36mredis error[39m
+    err: {
+      "type": "AggregateError",
+      "message": "",
+      "stack":
+          AggregateError [ECONNREFUSED]: 
+              at internalConnectMultiple (node:net:1139:18)
+              at afterConnectMultiple (node:net:1714:7)
+      "aggregateErrors": [
+        {
+          "type": "Error",
+          "message": "connect ECONNREFUSED ::1:6379",
+          "stack":
+              Error: connect ECONNREFUSED ::1:6379
+                  at createConnectionError (node:net:1677:14)
+                  at afterConnectMultiple (node:net:1707:16)
+          "errno": -4078,
+          "code": "ECONNREFUSED",
+          "syscall": "connect",
+          "address": "::1",
+          "port": 6379
+        },
+        {
+          "type": "Error",
+          "message": "connect ECONNREFUSED 127.0.0.1:6379",
+          "stack":
+              Error: connect ECONNREFUSED 127.0.0.1:6379
+                  at createConnectionError (node:net:1677:14)
+                  at afterConnectMultiple (node:net:1707:16)
+          "errno": -4078,
+          "code": "ECONNREFUSED",
+          "syscall": "connect",
+          "address": "127.0.0.1",
+          "port": 6379
+        }
+      ],
+      "code": "ECONNREFUSED"
+    }
+[2026-05-03 19:24:45.137 +0530] [33mWARN[39m: [36mredis reconnecting[39m
+[2026-05-03 19:24:45.753 +0530] [31mERROR[39m: [36mredis error[39m
+    err: {
+      "type": "AggregateError",
+      "message": "",
+      "stack":
+          AggregateError [ECONNREFUSED]: 
+              at internalConnectMultiple (node:net:1139:18)
+              at afterConnectMultiple (node:net:1714:7)
+      "aggregateErrors": [
+        {
+          "type": "Error",
+          "message": "connect ECONNREFUSED ::1:6379",
+          "stack":
+              Error: connect ECONNREFUSED ::1:6379
+                  at createConnectionError (node:net:1677:14)
+                  at afterConnectMultiple (node:net:1707:16)
+          "errno": -4078,
+          "code": "ECONNREFUSED",
+          "syscall": "connect",
+          "address": "::1",
+          "port": 6379
+        },
+        {
+          "type": "Error",
+          "message": "connect ECONNREFUSED 127.0.0.1:6379",
+          "stack":
+              Error: connect ECONNREFUSED 127.0.0.1:6379
+                  at createConnectionError (node:net:1677:14)
+                  at afterConnectMultiple (node:net:1707:16)
+          "errno": -4078,
+          "code": "ECONNREFUSED",
+          "syscall": "connect",
+          "address": "127.0.0.1",
+          "port": 6379
+        }
+      ],
+      "code": "ECONNREFUSED"
+    }
+[2026-05-03 19:24:45.754 +0530] [33mWARN[39m: [36mredis reconnecting[39m
+[2026-05-03 19:24:46.420 +0530] [31mERROR[39m: [36mredis error[39m
+    err: {
+      "type": "AggregateError",
+      "message": "",
+      "stack":
+          AggregateError [ECONNREFUSED]: 
+              at internalConnectMultiple (node:net:1139:18)
+              at afterConnectMultiple (node:net:1714:7)
+      "aggregateErrors": [
+        {
+          "type": "Error",
+          "message": "connect ECONNREFUSED ::1:6379",
+          "stack":
+              Error: connect ECONNREFUSED ::1:6379
+                  at createConnectionError (node:net:1677:14)
+                  at afterConnectMultiple (node:net:1707:16)
+          "errno": -4078,
+          "code": "ECONNREFUSED",
+          "syscall": "connect",
+          "address": "::1",
+          "port": 6379
+        },
+        {
+          "type": "Error",
+          "message": "connect ECONNREFUSED 127.0.0.1:6379",
+          "stack":
+              Error: connect ECONNREFUSED 127.0.0.1:6379
+                  at createConnectionError (node:net:1677:14)
+                  at afterConnectMultiple (node:net:1707:16)
+          "errno": -4078,
+          "code": "ECONNREFUSED",
+          "syscall": "connect",
+          "address": "127.0.0.1",
+          "port": 6379
+        }
+      ],
+      "code": "ECONNREFUSED"
+    }
+[2026-05-03 19:24:46.420 +0530] [33mWARN[39m: [36mredis reconnecting[39m
+[2026-05-03 19:24:47.137 +0530] [31mERROR[39m: [36mredis error[39m
+    err: {
+      "type": "AggregateError",
+      "message": "",
+      "stack":
+          AggregateError [ECONNREFUSED]: 
+              at internalConnectMultiple (node:net:1139:18)
+              at afterConnectMultiple (node:net:1714:7)
+      "aggregateErrors": [
+        {
+          "type": "Error",
+          "message": "connect ECONNREFUSED ::1:6379",
+          "stack":
+              Error: connect ECONNREFUSED ::1:6379
+                  at createConnectionError (node:net:1677:14)
+                  at afterConnectMultiple (node:net:1707:16)
+          "errno": -4078,
+          "code": "ECONNREFUSED",
+          "syscall": "connect",
+          "address": "::1",
+          "port": 6379
+        },
+        {
+          "type": "Error",
+          "message": "connect ECONNREFUSED 127.0.0.1:6379",
+          "stack":
+              Error: connect ECONNREFUSED 127.0.0.1:6379
+                  at createConnectionError (node:net:1677:14)
+                  at afterConnectMultiple (node:net:1707:16)
+          "errno": -4078,
+          "code": "ECONNREFUSED",
+          "syscall": "connect",
+          "address": "127.0.0.1",
+          "port": 6379
+        }
+      ],
+      "code": "ECONNREFUSED"
+    }
+[2026-05-03 19:24:47.137 +0530] [33mWARN[39m: [36mredis reconnecting[39m
+[2026-05-03 19:24:47.890 +0530] [31mERROR[39m: [36mredis error[39m
+    err: {
+      "type": "AggregateError",
+      "message": "",
+      "stack":
+          AggregateError [ECONNREFUSED]: 
+              at internalConnectMultiple (node:net:1139:18)
+              at afterConnectMultiple (node:net:1714:7)
+      "aggregateErrors": [
+        {
+          "type": "Error",
+          "message": "connect ECONNREFUSED ::1:6379",
+          "stack":
+              Error: connect ECONNREFUSED ::1:6379
+                  at createConnectionError (node:net:1677:14)
+                  at afterConnectMultiple (node:net:1707:16)
+          "errno": -4078,
+          "code": "ECONNREFUSED",
+          "syscall": "connect",
+          "address": "::1",
+          "port": 6379
+        },
+        {
+          "type": "Error",
+          "message": "connect ECONNREFUSED 127.0.0.1:6379",
+          "stack":
+              Error: connect ECONNREFUSED 127.0.0.1:6379
+                  at createConnectionError (node:net:1677:14)
+                  at afterConnectMultiple (node:net:1707:16)
+          "errno": -4078,
+          "code": "ECONNREFUSED",
+          "syscall": "connect",
+          "address": "127.0.0.1",
+          "port": 6379
+        }
+      ],
+      "code": "ECONNREFUSED"
+    }
+[2026-05-03 19:24:47.890 +0530] [33mWARN[39m: [36mredis reconnecting[39m
+[2026-05-03 19:24:48.701 +0530] [31mERROR[39m: [36mredis error[39m
+    err: {
+      "type": "AggregateError",
+      "message": "",
+      "stack":
+          AggregateError [ECONNREFUSED]: 
+              at internalConnectMultiple (node:net:1139:18)
+              at afterConnectMultiple (node:net:1714:7)
+      "aggregateErrors": [
+        {
+          "type": "Error",
+          "message": "connect ECONNREFUSED ::1:6379",
+          "stack":
+              Error: connect ECONNREFUSED ::1:6379
+                  at createConnectionError (node:net:1677:14)
+                  at afterConnectMultiple (node:net:1707:16)
+          "errno": -4078,
+          "code": "ECONNREFUSED",
+          "syscall": "connect",
+          "address": "::1",
+          "port": 6379
+        },
+        {
+          "type": "Error",
+          "message": "connect ECONNREFUSED 127.0.0.1:6379",
+          "stack":
+              Error: connect ECONNREFUSED 127.0.0.1:6379
+                  at createConnectionError (node:net:1677:14)
+                  at afterConnectMultiple (node:net:1707:16)
+          "errno": -4078,
+          "code": "ECONNREFUSED",
+          "syscall": "connect",
+          "address": "127.0.0.1",
+          "port": 6379
+        }
+      ],
+      "code": "ECONNREFUSED"
+    }
+[2026-05-03 19:24:48.701 +0530] [33mWARN[39m: [36mredis reconnecting[39m
+[2026-05-03 19:24:49.565 +0530] [31mERROR[39m: [36mredis error[39m
+    err: {
+      "type": "AggregateError",
+      "message": "",
+      "stack":
+          AggregateError [ECONNREFUSED]: 
+              at internalConnectMultiple (node:net:1139:18)
+              at afterConnectMultiple (node:net:1714:7)
+      "aggregateErrors": [
+        {
+          "type": "Error",
+          "message": "connect ECONNREFUSED ::1:6379",
+          "stack":
+              Error: connect ECONNREFUSED ::1:6379
+                  at createConnectionError (node:net:1677:14)
+                  at afterConnectMultiple (node:net:1707:16)
+          "errno": -4078,
+          "code": "ECONNREFUSED",
+          "syscall": "connect",
+          "address": "::1",
+          "port": 6379
+        },
+        {
+          "type": "Error",
+          "message": "connect ECONNREFUSED 127.0.0.1:6379",
+          "stack":
+              Error: connect ECONNREFUSED 127.0.0.1:6379
+                  at createConnectionError (node:net:1677:14)
+                  at afterConnectMultiple (node:net:1707:16)
+          "errno": -4078,
+          "code": "ECONNREFUSED",
+          "syscall": "connect",
+          "address": "127.0.0.1",
+          "port": 6379
+        }
+      ],
+      "code": "ECONNREFUSED"
+    }
+[2026-05-03 19:24:49.565 +0530] [33mWARN[39m: [36mredis reconnecting[39m
+[2026-05-03 19:24:50.474 +0530] [31mERROR[39m: [36mredis error[39m
+    err: {
+      "type": "AggregateError",
+      "message": "",
+      "stack":
+          AggregateError [ECONNREFUSED]: 
+              at internalConnectMultiple (node:net:1139:18)
+              at afterConnectMultiple (node:net:1714:7)
+      "aggregateErrors": [
+        {
+          "type": "Error",
+          "message": "connect ECONNREFUSED ::1:6379",
+          "stack":
+              Error: connect ECONNREFUSED ::1:6379
+                  at createConnectionError (node:net:1677:14)
+                  at afterConnectMultiple (node:net:1707:16)
+          "errno": -4078,
+          "code": "ECONNREFUSED",
+          "syscall": "connect",
+          "address": "::1",
+          "port": 6379
+        },
+        {
+          "type": "Error",
+          "message": "connect ECONNREFUSED 127.0.0.1:6379",
+          "stack":
+              Error: connect ECONNREFUSED 127.0.0.1:6379
+                  at createConnectionError (node:net:1677:14)
+                  at afterConnectMultiple (node:net:1707:16)
+          "errno": -4078,
+          "code": "ECONNREFUSED",
+          "syscall": "connect",
+          "address": "127.0.0.1",
+          "port": 6379
+        }
+      ],
+      "code": "ECONNREFUSED"
+    }
+[2026-05-03 19:24:50.474 +0530] [33mWARN[39m: [36mredis reconnecting[39m
+[2026-05-03 19:24:51.440 +0530] [31mERROR[39m: [36mredis error[39m
+    err: {
+      "type": "AggregateError",
+      "message": "",
+      "stack":
+          AggregateError [ECONNREFUSED]: 
+              at internalConnectMultiple (node:net:1139:18)
+              at afterConnectMultiple (node:net:1714:7)
+      "aggregateErrors": [
+        {
+          "type": "Error",
+          "message": "connect ECONNREFUSED ::1:6379",
+          "stack":
+              Error: connect ECONNREFUSED ::1:6379
+                  at createConnectionError (node:net:1677:14)
+                  at afterConnectMultiple (node:net:1707:16)
+          "errno": -4078,
+          "code": "ECONNREFUSED",
+          "syscall": "connect",
+          "address": "::1",
+          "port": 6379
+        },
+        {
+          "type": "Error",
+          "message": "connect ECONNREFUSED 127.0.0.1:6379",
+          "stack":
+              Error: connect ECONNREFUSED 127.0.0.1:6379
+                  at createConnectionError (node:net:1677:14)
+                  at afterConnectMultiple (node:net:1707:16)
+          "errno": -4078,
+          "code": "ECONNREFUSED",
+          "syscall": "connect",
+          "address": "127.0.0.1",
+          "port": 6379
+        }
+      ],
+      "code": "ECONNREFUSED"
+    }
+[2026-05-03 19:24:51.440 +0530] [33mWARN[39m: [36mredis reconnecting[39m
+[2026-05-03 19:24:52.453 +0530] [31mERROR[39m: [36mredis error[39m
+    err: {
+      "type": "AggregateError",
+      "message": "",
+      "stack":
+          AggregateError [ECONNREFUSED]: 
+              at internalConnectMultiple (node:net:1139:18)
+              at afterConnectMultiple (node:net:1714:7)
+      "aggregateErrors": [
+        {
+          "type": "Error",
+          "message": "connect ECONNREFUSED ::1:6379",
+          "stack":
+              Error: connect ECONNREFUSED ::1:6379
+                  at createConnectionError (node:net:1677:14)
+                  at afterConnectMultiple (node:net:1707:16)
+          "errno": -4078,
+          "code": "ECONNREFUSED",
+          "syscall": "connect",
+          "address": "::1",
+          "port": 6379
+        },
+        {
+          "type": "Error",
+          "message": "connect ECONNREFUSED 127.0.0.1:6379",
+          "stack":
+              Error: connect ECONNREFUSED 127.0.0.1:6379
+                  at createConnectionError (node:net:1677:14)
+                  at afterConnectMultiple (node:net:1707:16)
+          "errno": -4078,
+          "code": "ECONNREFUSED",
+          "syscall": "connect",
+          "address": "127.0.0.1",
+          "port": 6379
+        }
+      ],
+      "code": "ECONNREFUSED"
+    }
+[2026-05-03 19:24:52.453 +0530] [33mWARN[39m: [36mredis reconnecting[39m
+[2026-05-03 19:24:53.509 +0530] [31mERROR[39m: [36mredis error[39m
+    err: {
+      "type": "AggregateError",
+      "message": "",
+      "stack":
+          AggregateError [ECONNREFUSED]: 
+              at internalConnectMultiple (node:net:1139:18)
+              at afterConnectMultiple (node:net:1714:7)
+      "aggregateErrors": [
+        {
+          "type": "Error",
+          "message": "connect ECONNREFUSED ::1:6379",
+          "stack":
+              Error: connect ECONNREFUSED ::1:6379
+                  at createConnectionError (node:net:1677:14)
+                  at afterConnectMultiple (node:net:1707:16)
+          "errno": -4078,
+          "code": "ECONNREFUSED",
+          "syscall": "connect",
+          "address": "::1",
+          "port": 6379
+        },
+        {
+          "type": "Error",
+          "message": "connect ECONNREFUSED 127.0.0.1:6379",
+          "stack":
+              Error: connect ECONNREFUSED 127.0.0.1:6379
+                  at createConnectionError (node:net:1677:14)
+                  at afterConnectMultiple (node:net:1707:16)
+          "errno": -4078,
+          "code": "ECONNREFUSED",
+          "syscall": "connect",
+          "address": "127.0.0.1",
+          "port": 6379
+        }
+      ],
+      "code": "ECONNREFUSED"
+    }
+[2026-05-03 19:24:53.509 +0530] [33mWARN[39m: [36mredis reconnecting[39m
+[2026-05-03 19:24:54.619 +0530] [31mERROR[39m: [36mredis error[39m
+    err: {
+      "type": "AggregateError",
+      "message": "",
+      "stack":
+          AggregateError [ECONNREFUSED]: 
+              at internalConnectMultiple (node:net:1139:18)
+              at afterConnectMultiple (node:net:1714:7)
+      "aggregateErrors": [
+        {
+          "type": "Error",
+          "message": "connect ECONNREFUSED ::1:6379",
+          "stack":
+              Error: connect ECONNREFUSED ::1:6379
+                  at createConnectionError (node:net:1677:14)
+                  at afterConnectMultiple (node:net:1707:16)
+          "errno": -4078,
+          "code": "ECONNREFUSED",
+          "syscall": "connect",
+          "address": "::1",
+          "port": 6379
+        },
+        {
+          "type": "Error",
+          "message": "connect ECONNREFUSED 127.0.0.1:6379",
+          "stack":
+              Error: connect ECONNREFUSED 127.0.0.1:6379
+                  at createConnectionError (node:net:1677:14)
+                  at afterConnectMultiple (node:net:1707:16)
+          "errno": -4078,
+          "code": "ECONNREFUSED",
+          "syscall": "connect",
+          "address": "127.0.0.1",
+          "port": 6379
+        }
+      ],
+      "code": "ECONNREFUSED"
+    }
+[2026-05-03 19:24:54.620 +0530] [33mWARN[39m: [36mredis reconnecting[39m
+[2026-05-03 19:24:55.783 +0530] [32mINFO[39m: [36mredis connected[39m

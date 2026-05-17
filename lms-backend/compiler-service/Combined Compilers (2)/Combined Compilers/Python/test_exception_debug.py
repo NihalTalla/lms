@@ -1,0 +1,5 @@
+# Simple exception test
+try:
+    x = 1 / 0
+except:
+    print("caught")

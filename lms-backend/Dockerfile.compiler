@@ -1,0 +1,38 @@
+FROM node:20-bookworm-slim AS deps
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci
+
+FROM deps AS builder
+WORKDIR /app
+COPY compiler-service ./compiler-service
+RUN npm run build --prefix compiler-service
+
+FROM node:20-bookworm-slim AS runner
+WORKDIR /app
+
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends python3 gcc g++ default-jdk curl ca-certificates \
+  && rm -rf /var/lib/apt/lists/* \
+  && useradd --system --uid 10001 --shell /usr/sbin/nologin runner
+
+COPY --from=deps /app/node_modules ./node_modules
+COPY --from=builder /app/compiler-service/dist ./compiler-service/dist
+COPY compiler-service/package.json ./compiler-service/package.json
+COPY compiler-service/src/sandbox.sh /usr/local/bin/sandbox-run
+
+RUN chmod +x /usr/local/bin/sandbox-run \
+  && mkdir -p /tmp/lms-exec \
+  && chmod 1777 /tmp/lms-exec
+
+ENV NODE_ENV=production
+ENV COMPILER_PORT=4000
+ENV RUNNER_UID=10001
+ENV EXEC_BASE=/tmp/lms-exec
+ENV SANDBOX_BIN=/usr/local/bin/sandbox-run
+
+EXPOSE 4000
+HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 CMD curl -fsS http://localhost:4000/health || exit 1
+
+# The parent process runs as root so child_process.spawn can drop executions to RUNNER_UID.
+CMD ["node", "compiler-service/dist/index.js"]

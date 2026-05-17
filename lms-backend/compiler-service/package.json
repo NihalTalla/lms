@@ -1,0 +1,19 @@
+{
+  "name": "lms-compiler-service",
+  "private": true,
+  "version": "0.1.0",
+  "engines": {
+    "node": "20.15.0"
+  },
+  "type": "commonjs",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch index.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
+    "type-check": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "sam:build": "sam build --template-file lambda_compilers/compilers_clean/template.yaml",
+    "sam:deploy": "sam deploy --template-file .aws-sam/build/template.yaml --stack-name lms-compiler-runners --capabilities CAPABILITY_IAM --resolve-s3"
+  }
+}

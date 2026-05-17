@@ -1,0 +1,18 @@
+{
+  "name": "lms-compiler-lambda",
+  "version": "1.0.0",
+  "description": "LMS multi-language compiler Lambda handler (Python, Java, C, C++)",
+  "main": "handler.js",
+  "scripts": {
+    "test": "node -e \"require('./handler.js'); console.log('handler loaded OK');\"",
+    "sam:build": "sam build --template-file template.yaml",
+    "sam:deploy": "powershell -ExecutionPolicy Bypass -File ./deploy.ps1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "readline-sync": "^1.4.10",
+    "uuid": "^9.0.0"
+  }
+}

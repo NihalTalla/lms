@@ -1,0 +1,140 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: LMS compiler runner Lambdas (python, java, cpp, c) with Function URLs.
+
+Parameters:
+  RunnerDefaultTimeoutMs:
+    Type: Number
+    Default: 3000
+  RunnerMinTimeoutMs:
+    Type: Number
+    Default: 1000
+  RunnerMaxTimeoutMs:
+    Type: Number
+    Default: 15000
+  RunnerFunctionTimeoutSeconds:
+    Type: Number
+    Default: 20
+  RunnerFunctionMemorySize:
+    Type: Number
+    Default: 1024
+
+Globals:
+  Function:
+    Runtime: nodejs20.x
+    Architectures:
+      - x86_64
+    Timeout: !Ref RunnerFunctionTimeoutSeconds
+    MemorySize: !Ref RunnerFunctionMemorySize
+    Tracing: Active
+    Environment:
+      Variables:
+        RUNNER_DEFAULT_TIMEOUT_MS: !Ref RunnerDefaultTimeoutMs
+        RUNNER_MIN_TIMEOUT_MS: !Ref RunnerMinTimeoutMs
+        RUNNER_MAX_TIMEOUT_MS: !Ref RunnerMaxTimeoutMs
+
+Resources:
+  PythonRunnerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: lms-compiler-python-runner
+      CodeUri: .
+      Handler: python-runner.handler
+      FunctionUrlConfig:
+        AuthType: NONE
+        Cors:
+          AllowMethods:
+            - POST
+          AllowHeaders:
+            - content-type
+          AllowOrigins:
+            - '*'
+      Events:
+        Root:
+          Type: HttpApi
+          Properties:
+            Path: /python
+            Method: POST
+
+  JavaRunnerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: lms-compiler-java-runner
+      CodeUri: .
+      Handler: java-runner.handler
+      FunctionUrlConfig:
+        AuthType: NONE
+        Cors:
+          AllowMethods:
+            - POST
+          AllowHeaders:
+            - content-type
+          AllowOrigins:
+            - '*'
+      Events:
+        Root:
+          Type: HttpApi
+          Properties:
+            Path: /java
+            Method: POST
+
+  CppRunnerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: lms-compiler-cpp-runner
+      CodeUri: .
+      Handler: cpp-runner.handler
+      FunctionUrlConfig:
+        AuthType: NONE
+        Cors:
+          AllowMethods:
+            - POST
+          AllowHeaders:
+            - content-type
+          AllowOrigins:
+            - '*'
+      Events:
+        Root:
+          Type: HttpApi
+          Properties:
+            Path: /cpp
+            Method: POST
+
+  CRunnerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: lms-compiler-c-runner
+      CodeUri: .
+      Handler: c-runner.handler
+      FunctionUrlConfig:
+        AuthType: NONE
+        Cors:
+          AllowMethods:
+            - POST
+          AllowHeaders:
+            - content-type
+          AllowOrigins:
+            - '*'
+      Events:
+        Root:
+          Type: HttpApi
+          Properties:
+            Path: /c
+            Method: POST
+
+Outputs:
+  PythonRunnerUrl:
+    Description: Function URL for python runner.
+    Value: !GetAtt PythonRunnerFunctionUrl.FunctionUrl
+
+  JavaRunnerUrl:
+    Description: Function URL for java runner.
+    Value: !GetAtt JavaRunnerFunctionUrl.FunctionUrl
+
+  CppRunnerUrl:
+    Description: Function URL for cpp runner.
+    Value: !GetAtt CppRunnerFunctionUrl.FunctionUrl
+
+  CRunnerUrl:
+    Description: Function URL for c runner.
+    Value: !GetAtt CRunnerFunctionUrl.FunctionUrl

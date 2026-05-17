@@ -1,0 +1,125 @@
+x-lms-env: &lms-env
+  NODE_ENV: development
+  PORT: 3000
+  ALLOWED_ORIGINS: http://localhost:5173,https://lms-ui-hjb5.vercel.app
+  COMPILER_SERVICE_URL: http://compiler:4000
+  JWT_SECRET: dev-jwt-secret-please-change-this-32chars
+  JWT_EXPIRES_IN: 15m
+  REFRESH_TOKEN_SECRET: dev-refresh-secret-please-change-this-32chars
+  DATABASE_URL: postgresql://postgres:postgres@postgres:5432/lms
+  REDIS_URL: redis://redis:6379
+  AWS_REGION: ap-south-1
+  S3_BUCKET_NAME: lms-assets
+  CLOUDFRONT_DOMAIN: https://cdn.yourdomain.com
+  SQS_ENDPOINT: http://elasticmq:9324
+  SQS_SUBMISSIONS_QUEUE_URL: http://elasticmq:9324/000000000000/submissions
+  BCRYPT_ROUNDS: 12
+  RATE_LIMIT_WINDOW_MS: 60000
+  RATE_LIMIT_MAX: 100
+  COMPILER_TIMEOUT_MS: 8000
+  COMPILER_MEMORY_MB: 128
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: lms
+    ports:
+      - '5433:5432'
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres -d lms']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - '6379:6379'
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  elasticmq:
+    image: softwaremill/elasticmq-native:latest
+    ports:
+      - '9324:9324'
+      - '9325:9325'
+    volumes:
+      - ./elasticmq.conf:/opt/elasticmq.conf:ro
+    restart: unless-stopped
+
+  compiler:
+    build:
+      context: .
+      dockerfile: Dockerfile.compiler
+    ports:
+      - '4000:4000'
+    environment:
+      - NODE_ENV=development
+      - COMPILER_PORT=4000
+      - RUNNER_UID=10001
+      - EXEC_BASE=/tmp/lms-exec
+    healthcheck:
+      test: ['CMD', 'curl', '-fsS', 'http://localhost:4000/health']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    environment:
+      <<: *lms-env
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      elasticmq:
+        condition: service_started
+      compiler:
+        condition: service_healthy
+    healthcheck:
+      test: ['CMD', 'curl', '-fsS', 'http://localhost:3000/health']
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    restart: unless-stopped
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      <<: *lms-env
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      elasticmq:
+        condition: service_started
+      compiler:
+        condition: service_healthy
+    command: ["node", "dist/src/worker.js"]
+    healthcheck:
+      disable: true
+    restart: unless-stopped
+
+volumes:
+  postgres-data:

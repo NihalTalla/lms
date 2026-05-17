@@ -1,0 +1,412 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── USERS ────────────────────────────────────────────────────────────────────
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  role         Role
+  avatarUrl    String?
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relations
+  enrollments      BatchEnrollment[]
+  submissions      Submission[]
+  contestEntries   ContestEntry[]
+  testAttempts     TestAttempt[]
+  sentMessages     Message[]        @relation("sender")
+  receivedMessages Message[]        @relation("receiver")
+
+  institutionId String?
+  institution   Institution? @relation(fields: [institutionId], references: [id])
+
+  @@index([email])
+  @@index([role])
+}
+
+enum Role {
+  student
+  faculty
+  trainer
+  admin
+}
+
+// ─── INSTITUTIONS ─────────────────────────────────────────────────────────────
+
+model Institution {
+  id        String   @id @default(uuid())
+  name      String
+  createdAt DateTime @default(now())
+
+  users         User[]
+  batches       Batch[]
+  subscriptions Subscription[]
+}
+
+// ─── COURSES & MODULES ────────────────────────────────────────────────────────
+
+model Course {
+  id           String   @id @default(uuid())
+  title        String
+  description  String?
+  thumbnailUrl String?
+  isPublished  Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  modules Module[]
+  batches BatchCourse[]
+}
+
+model Module {
+  id          String   @id @default(uuid())
+  courseId    String
+  course      Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  title       String
+  order       Int
+  videoUrl    String?
+  content     String?
+  duration    Int?
+  isPublished Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  @@index([courseId, order])
+}
+
+// ─── BATCHES ──────────────────────────────────────────────────────────────────
+
+model Batch {
+  id   String @id @default(uuid())
+  name String
+
+  institutionId String?
+  institution   Institution? @relation(fields: [institutionId], references: [id])
+
+  startDate DateTime?
+  endDate   DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  enrollments BatchEnrollment[]
+  courses     BatchCourse[]
+  contests    Contest[]
+  tests       Test[]
+}
+
+model BatchEnrollment {
+  id      String @id @default(uuid())
+  batchId String
+  batch   Batch  @relation(fields: [batchId], references: [id], onDelete: Cascade)
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  role     Role
+  joinedAt DateTime @default(now())
+
+  @@unique([batchId, userId])
+}
+
+model BatchCourse {
+  batchId String
+  batch   Batch  @relation(fields: [batchId], references: [id], onDelete: Cascade)
+
+  courseId String
+  course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@id([batchId, courseId])
+}
+
+// ─── PROBLEMS ─────────────────────────────────────────────────────────────────
+
+model Problem {
+  id          String     @id @default(uuid())
+  title       String
+  description String
+  difficulty  Difficulty
+  tags        String[]
+
+  timeLimit   Int     @default(5000)
+  memoryLimit Int     @default(128)
+  isPublished Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  testCases       TestCase[]
+  submissions     Submission[]
+  contestProblems ContestProblem[]
+}
+
+enum Difficulty {
+  easy
+  medium
+  hard
+}
+
+model TestCase {
+  id        String  @id @default(uuid())
+  problemId String
+  problem   Problem @relation(fields: [problemId], references: [id], onDelete: Cascade)
+
+  input    String
+  expected String
+  isSample Boolean @default(false)
+  order    Int
+
+  @@index([problemId])
+}
+
+// ─── SUBMISSIONS ──────────────────────────────────────────────────────────────
+
+enum Language {
+  python
+  c
+  cpp
+  java
+}
+
+enum SubmissionStatus {
+  pending
+  running
+  completed
+  failed
+}
+
+enum Verdict {
+  accepted
+  wrong_answer
+  time_limit_exceeded
+  memory_limit_exceeded
+  runtime_error
+  compilation_error
+}
+
+model Submission {
+  id        String @id @default(uuid())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  problemId String
+  problem   Problem @relation(fields: [problemId], references: [id], onDelete: Cascade)
+
+  language Language
+  code     String   @db.Text
+
+  status  SubmissionStatus @default(pending)
+  verdict Verdict?
+
+  stdout String?
+  stderr String?
+
+  passedTests Int @default(0)
+  totalTests  Int @default(0)
+
+  execTimeMs Int?
+  memoryKb   Int?
+
+  score Float?
+
+  contestId String?
+  contest   Contest? @relation(fields: [contestId], references: [id], onDelete: SetNull)
+
+  gradedBy String?
+  gradedAt DateTime?
+
+  createdAt DateTime @default(now())
+
+  @@index([userId, problemId])
+  @@index([contestId])
+  @@index([status])
+}
+
+// ─── CONTESTS ─────────────────────────────────────────────────────────────────
+
+model Contest {
+  id String @id @default(uuid())
+
+  batchId String?
+  batch   Batch? @relation(fields: [batchId], references: [id], onDelete: SetNull)
+
+  title       String
+  description String?
+
+  startTime DateTime
+  endTime   DateTime
+  isPublic  Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  problems ContestProblem[]
+  entries  ContestEntry[]
+
+  submissions Submission[]
+}
+
+model ContestProblem {
+  contestId String
+  contest   Contest @relation(fields: [contestId], references: [id], onDelete: Cascade)
+
+  problemId String
+  problem   Problem @relation(fields: [problemId], references: [id], onDelete: Cascade)
+
+  order  Int
+  points Int @default(100)
+
+  @@id([contestId, problemId])
+}
+
+model ContestEntry {
+  id String @id @default(uuid())
+
+  contestId String
+  contest   Contest @relation(fields: [contestId], references: [id], onDelete: Cascade)
+
+  userId String
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  score    Float    @default(0)
+  joinedAt DateTime @default(now())
+
+  @@unique([contestId, userId])
+}
+
+// ─── TESTS (ASSESSMENTS) ──────────────────────────────────────────────────────
+
+model Test {
+  id String @id @default(uuid())
+
+  batchId String
+  batch   Batch @relation(fields: [batchId], references: [id], onDelete: Cascade)
+
+  title       String
+  description String?
+
+  startTime DateTime?
+  endTime   DateTime?
+  durationSeconds Int?
+
+  createdAt DateTime @default(now())
+
+  questions TestQuestion[]
+  attempts  TestAttempt[]
+}
+
+model TestQuestion {
+  id String @id @default(uuid())
+
+  testId String
+  test   Test @relation(fields: [testId], references: [id], onDelete: Cascade)
+
+  text    String
+  options Json
+  answer  String
+
+  points Int @default(1)
+  order  Int
+}
+
+model TestAttempt {
+  id String @id @default(uuid())
+
+  testId String
+  test   Test @relation(fields: [testId], references: [id], onDelete: Cascade)
+
+  userId String
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  answers     Json
+  score       Float?
+  submittedAt DateTime?
+  expiresAt   DateTime @default(now())
+  durationSeconds Int @default(3600)
+  status      TestAttemptStatus @default(active)
+  startedAt   DateTime @default(now())
+
+  @@unique([testId, userId])
+  @@index([status])
+}
+
+enum TestAttemptStatus {
+  active
+  submitted
+  expired
+}
+
+// ─── MESSAGES ─────────────────────────────────────────────────────────────────
+
+model Message {
+  id String @id @default(uuid())
+
+  senderId String
+  sender   User @relation("sender", fields: [senderId], references: [id], onDelete: Cascade)
+
+  receiverId String
+  receiver   User @relation("receiver", fields: [receiverId], references: [id], onDelete: Cascade)
+
+  content String
+  isRead  Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([senderId, receiverId])
+}
+
+// ─── BILLING ──────────────────────────────────────────────────────────────────
+
+model Subscription {
+  id String @id @default(uuid())
+
+  institutionId String
+  institution   Institution @relation(fields: [institutionId], references: [id], onDelete: Cascade)
+
+  plan   String
+  status String
+
+  startsAt  DateTime
+  expiresAt DateTime
+
+  createdAt DateTime @default(now())
+}
+
+// ─── ATTENDANCE ─────────────────────────────────────────────────────────────
+
+model AttendanceSession {
+  id          String   @id @default(uuid())
+  courseId    String
+  courseTitle String
+  batchId     String?
+  status      String   @default("open")
+  createdAt   DateTime @default(now())
+
+  marks AttendanceMark[]
+
+  @@index([courseId])
+  @@index([batchId])
+  @@index([status])
+}
+
+model AttendanceMark {
+  id        String   @id @default(uuid())
+  sessionId String
+  session   AttendanceSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  userId    String
+  user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  markedAt DateTime @default(now())
+
+  @@unique([sessionId, userId])
+  @@index([userId])
+}
