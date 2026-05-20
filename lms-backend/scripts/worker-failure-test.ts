@@ -12,17 +12,26 @@ async function requestJson(url: string, init?: RequestInit) {
 
 async function main() {
   console.log('Logging in...');
+  const userEmail = process.env.VERIFY_USER_EMAIL;
+  const userPassword = process.env.VERIFY_USER_PASSWORD;
+  const problemId = process.env.VERIFY_PROBLEM_ID;
+
+  if (!userEmail || !userPassword || !problemId) {
+    console.error('This script requires environment variables: VERIFY_USER_EMAIL, VERIFY_USER_PASSWORD, VERIFY_PROBLEM_ID');
+    process.exit(2);
+  }
+
   const login = await requestJson(`${apiBaseUrl}/api/auth/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email: 'student1@codify.com', password: 'Student@123' })
+    body: JSON.stringify({ email: userEmail, password: userPassword })
   });
   const token = String(login.accessToken);
   console.log('Creating submission while worker is down...');
   const create = await requestJson(`${apiBaseUrl}/api/submissions`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-    body: JSON.stringify({ problemId: '33333333-3333-3333-3333-333333333333', language: 'python', code: 'print(1)' })
+    body: JSON.stringify({ problemId, language: 'python', code: 'print(1)' })
   });
   const id = String(create.submissionId);
   console.log('submission created', id);

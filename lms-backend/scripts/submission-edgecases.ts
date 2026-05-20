@@ -1,7 +1,7 @@
 import 'dotenv/config';
 
 const apiBaseUrl = process.env.API_BASE_URL ?? 'http://127.0.0.1:3000';
-const seededProblemId = process.env.VERIFY_PROBLEM_ID ?? '33333333-3333-3333-3333-333333333333';
+const seededProblemId = process.env.VERIFY_PROBLEM_ID;
 const pollIntervalMs = Number(process.env.VERIFY_POLL_INTERVAL_MS ?? 1500);
 const pollAttempts = Number(process.env.VERIFY_POLL_ATTEMPTS ?? 80);
 
@@ -22,10 +22,17 @@ async function requestJson(url: string, init?: RequestInit) {
 }
 
 async function login() {
+  const email = process.env.VERIFY_USER_EMAIL;
+  const password = process.env.VERIFY_USER_PASSWORD;
+
+  if (!email || !password) {
+    throw new Error('VERIFY_USER_EMAIL and VERIFY_USER_PASSWORD must be set for this script');
+  }
+
   const body = await requestJson(`${apiBaseUrl}/api/auth/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email: 'student1@codify.com', password: 'Student@123' })
+    body: JSON.stringify({ email, password })
   });
   if (!body.accessToken) throw new Error('login failed');
   return String(body.accessToken);

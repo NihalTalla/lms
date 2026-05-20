@@ -65,15 +65,15 @@ RUNNER_UID=10001
 ```powershell
 docker compose -f docker-compose.dev.yml up -d
 npm run prisma:push
-npm run prisma:seed
+
+// Note: demo/mock seeding has been removed from the repository. Provide real users and problems
+// via your own provisioning process. Set VERIFY_PROBLEM_ID and user credentials in env when running
+// the verification scripts.
 ```
 
-The seed creates:
-
-```text
-student1@codify.com / Student@123
-problem: 33333333-3333-3333-3333-333333333333 (Sum Two Numbers, 3 test cases)
-```
+Seeding is disabled in this repository — there are no default users or problems created. Use your
+own provisioning process to create test users and problems and expose the problem ID via the
+VERIFY_PROBLEM_ID environment variable.
 
 ## Start Compiler
 
@@ -167,12 +167,12 @@ Expected final output:
 
 ## Manual API Smoke Test
 
-Login:
+Login (use your real test user):
 
 ```powershell
-curl -X POST http://localhost:3000/api/auth/login `
-  -H "Content-Type: application/json" `
-  -d '{ "email": "student1@codify.com", "password": "Student@123" }'
+curl -X POST http://localhost:3000/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{ "email": "<email>", "password": "<password>" }'
 ```
 
 Submit:
@@ -181,7 +181,7 @@ Submit:
 curl -X POST http://localhost:3000/api/submissions `
   -H "Authorization: Bearer <access-token>" `
   -H "Content-Type: application/json" `
-  -d '{ "problemId": "33333333-3333-3333-3333-333333333333", "language": "python", "code": "import sys\na, b = map(int, sys.stdin.read().split())\nprint(a + b)" }'
+  -d '{ "problemId": "<problem-id>", "language": "python", "code": "import sys\na, b = map(int, sys.stdin.read().split())\nprint(a + b)" }'
 ```
 
 Poll:

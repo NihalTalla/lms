@@ -45,16 +45,24 @@ type PollSummary = {
 };
 
 const apiBaseUrl = process.env.API_BASE_URL ?? 'http://127.0.0.1:3000';
-const seededProblemId = process.env.VERIFY_PROBLEM_ID ?? '33333333-3333-3333-3333-333333333333';
+const seededProblemId = process.env.VERIFY_PROBLEM_ID;
 const submissionsPerUser = Number(process.env.LOAD_TEST_SUBMISSIONS_PER_USER ?? 2);
 const pollIntervalMs = Number(process.env.LOAD_TEST_POLL_INTERVAL_MS ?? 1000);
 const pollAttempts = Number(process.env.LOAD_TEST_POLL_ATTEMPTS ?? 90);
 
-const users: Credentials[] = [
-  { label: 'student1', email: 'student1@codify.com', password: 'Student@123' },
-  { label: 'student2', email: 'student2@codify.com', password: 'Student@123' },
-  { label: 'student3', email: 'student3@codify.com', password: 'Student@123' }
-];
+// Provide users as a JSON array in the LOAD_TEST_USERS env var, e.g.
+// LOAD_TEST_USERS='[{"label":"s1","email":"s1@...","password":"..."}]'
+let users: Credentials[] = [];
+if (process.env.LOAD_TEST_USERS) {
+  try {
+    users = JSON.parse(process.env.LOAD_TEST_USERS) as Credentials[];
+  } catch (err) {
+    throw new Error('LOAD_TEST_USERS is not valid JSON');
+  }
+} else {
+  console.error('This script requires LOAD_TEST_USERS environment variable (JSON array of {label,email,password}) and VERIFY_PROBLEM_ID');
+  process.exit(2);
+}
 
 function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));

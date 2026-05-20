@@ -39,8 +39,9 @@ type JsonRequestInit = Omit<RequestInit, 'headers'> & {
 
 const apiBaseUrl = process.env.API_BASE_URL ?? 'http://localhost:3000';
 const compilerServiceUrl = process.env.COMPILER_SERVICE_URL ?? 'http://localhost:4000';
-const seededProblemId =
-  process.env.VERIFY_PROBLEM_ID ?? '33333333-3333-3333-3333-333333333333';
+const seededProblemId = process.env.VERIFY_PROBLEM_ID;
+const verifyUserEmail = process.env.VERIFY_USER_EMAIL;
+const verifyUserPassword = process.env.VERIFY_USER_PASSWORD;
 const pollIntervalMs = Number(process.env.VERIFY_POLL_INTERVAL_MS ?? 1500);
 const pollAttempts = Number(process.env.VERIFY_POLL_ATTEMPTS ?? 40);
 
@@ -108,12 +109,13 @@ async function assertApiHealth() {
 }
 
 async function login() {
+  if (!verifyUserEmail || !verifyUserPassword) {
+    throw new Error('VERIFY_USER_EMAIL and VERIFY_USER_PASSWORD environment variables must be set for this script');
+  }
+
   const loginResponse = await requestJson<LoginResponse>(`${apiBaseUrl}/api/auth/login`, {
     method: 'POST',
-    body: JSON.stringify({
-      email: 'student1@codify.com',
-      password: 'Student@123'
-    })
+    body: JSON.stringify({ email: verifyUserEmail, password: verifyUserPassword })
   });
 
   return assertString(loginResponse.accessToken, 'accessToken');
@@ -198,10 +200,14 @@ async function main() {
   console.log('Checking API dependency health...');
   await assertApiHealth();
 
-  console.log('Logging in as seeded student...');
+  if (!seededProblemId) {
+    throw new Error('VERIFY_PROBLEM_ID environment variable must be set for this script');
+  }
+
+  console.log('Logging in...');
   const accessToken = await login();
 
-  console.log('Creating seeded Sum Two Numbers submission...');
+  console.log('Creating Sum Two Numbers submission...');
   const submissionId = await createSubmission(accessToken);
 
   console.log(`Polling submission ${submissionId}...`);

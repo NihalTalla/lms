@@ -45,16 +45,9 @@ npm run worker
 
 ```bash
 npm run prisma:migrate
-npm run prisma:seed
 ```
 
-Seed users:
-
-```text
-admin@codify.com / Admin@123
-faculty@codify.com / Faculty@123
-trainer@codify.com / Trainer@123
-```
+Note: demo/mock seeding has been removed from this repository — there are no default users or problems created by `prisma db seed`. Create real users via your admin workflow or connect your production/dev seed process separately when needed.
 
 ## Checks
 

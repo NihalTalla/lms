@@ -11,10 +11,19 @@ async function requestJson(url: string, init?: RequestInit) {
 }
 
 async function main() {
+  const email = process.env.VERIFY_USER_EMAIL;
+  const password = process.env.VERIFY_USER_PASSWORD;
+  const problemId = process.env.VERIFY_PROBLEM_ID;
+
+  if (!email || !password || !problemId) {
+    console.error('This script requires VERIFY_USER_EMAIL, VERIFY_USER_PASSWORD, and VERIFY_PROBLEM_ID');
+    process.exit(2);
+  }
+
   const login = await requestJson(`${apiBaseUrl}/api/auth/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email: 'student1@codify.com', password: 'Student@123' })
+    body: JSON.stringify({ email, password })
   });
 
   const token = String(login.accessToken);
@@ -23,7 +32,7 @@ async function main() {
   const create = await requestJson(`${apiBaseUrl}/api/submissions`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-    body: JSON.stringify({ problemId: '33333333-3333-3333-3333-333333333333', language: 'python', code: 'print(1)' })
+    body: JSON.stringify({ problemId, language: 'python', code: 'print(1)' })
   });
 
   const id = String(create.submissionId);
