@@ -1,0 +1,12 @@
+{
+  "framework": "vite",
+  "installCommand": "npm ci --prefix ed-realm",
+  "buildCommand": "npm run build --prefix ed-realm",
+  "outputDirectory": "ed-realm/build",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
