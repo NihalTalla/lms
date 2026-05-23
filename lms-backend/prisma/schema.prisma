@@ -25,6 +25,7 @@ model User {
   submissions      Submission[]
   contestEntries   ContestEntry[]
   testAttempts     TestAttempt[]
+  attendanceMarks  AttendanceMark[]
   sentMessages     Message[]        @relation("sender")
   receivedMessages Message[]        @relation("receiver")
 
